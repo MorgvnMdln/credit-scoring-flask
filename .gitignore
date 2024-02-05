@@ -1,0 +1,9 @@
+venv/*
+*.csv
+.git/*
+model/xgb_model_best_params.pkl
+model/donnees_train.pkl
+save_x_train/X_xgbc.pkl
+save_x_train/X_lgb.pkl
+venv/Lib/site-packages/xgboost/lib/xgboost.dll
+.env
