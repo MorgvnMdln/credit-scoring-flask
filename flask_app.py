@@ -8,10 +8,10 @@ import pandas as pd
 from pickle import load
 import pickle
 import numpy as np
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 
-load_dotenv()
+# load_dotenv()
 
 app = Flask(__name__)
 streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
