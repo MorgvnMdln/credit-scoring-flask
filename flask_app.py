@@ -22,7 +22,7 @@ def home():
 if __name__ == '__main__':
     flask_url = os.environ.get('flask_url')
     if flask_url:
-        app.run(debug=True)
+        app.run(port=5000, debug=True)
     else:
         print("flask_url environment variable is not set.")
 
