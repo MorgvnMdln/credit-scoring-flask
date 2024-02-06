@@ -27,9 +27,10 @@ if __name__ == '__main__':
         print("flask_url environment variable is not set.")
 
 
-@app.route('/')
+@app.route('/templates')
 def index():
     streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
+    # https://github.com/MorgvnMdln/credit-scoring-streamlit.git  # Url de l'application Streamlit
     # streamlit_url = "https://my-streamlit-app.herokuapp.com"
     return render_template('index.html', streamlit_url=streamlit_url)
 
