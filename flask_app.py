@@ -20,11 +20,18 @@ def home():
     return "Hello, Flask!"
 
 if __name__ == '__main__':
-    flask_app = os.getenv('FLASK_APP')
-    if flask_app:
+    flask_url = os.environ.get('flask_url')
+    if flask_url:
         app.run(debug=True)
     else:
-        print("FLASK_APP environment variable is not set.")
+        print("flask_url environment variable is not set.")
+
+
+@app.route('/')
+def index():
+    streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
+    # streamlit_url = "https://my-streamlit-app.herokuapp.com"
+    return render_template('index.html', streamlit_url=streamlit_url)
 
 """
 # pred_model = PredictionModel()
