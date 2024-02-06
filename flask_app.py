@@ -14,14 +14,15 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
+streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
 
 @app.route('/')
 def home():
     return "Hello, Flask!"
 
 if __name__ == '__main__':
-    flask_url = os.environ.get('flask_url')
-    if flask_url:
+    # flask_url = os.environ.get('flask_url')
+    if streamlit_url:  # flask_url à changer par flask_url
         app.run(port=5000, debug=True)
     else:
         print("flask_url environment variable is not set.")
@@ -29,10 +30,14 @@ if __name__ == '__main__':
 
 @app.route('/templates')
 def index():
-    streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
-    # https://github.com/MorgvnMdln/credit-scoring-streamlit.git  # Url de l'application Streamlit
-    # streamlit_url = "https://my-streamlit-app.herokuapp.com"
     return render_template('index.html', streamlit_url=streamlit_url)
+
+
+
+
+
+
+
 
 """
 # pred_model = PredictionModel()
