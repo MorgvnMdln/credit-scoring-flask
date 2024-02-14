@@ -33,14 +33,7 @@ if __name__ == '__main__':
 
 
 
-
-
-
-
-
-
-
-"""
+'''
 # pred_model = PredictionModel()
 app = Flask(__name__)
 MODEL_PATH = 'model_global.pkl'
@@ -108,9 +101,7 @@ def predict():
     local_feat_importance = explainer.explain_instance(test_data.iloc[client_index, 0:-1],
                                                     _model.predict_proba,
                                                     num_samples=100)  # passer X en format numpy array
-    '''local_feat_importance = self.explainer.explain_instance(self.test_data.iloc[client_index],
-                                                    self._model.predict_proba,
-                                                    num_samples=100)  # passer X en format numpy array'''
+    
     temp_ = local_feat_importance.as_list()
     print ('temp_ :\n', temp_)
 
@@ -188,4 +179,4 @@ def get_client_comparison():
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-"""
+#'''
