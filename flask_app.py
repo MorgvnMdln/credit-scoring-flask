@@ -15,17 +15,22 @@ load_dotenv()
 
 app = Flask(__name__)
 
-# streamlit_url = os.environ.get('streamlit_url')
+streamlit_url = os.environ.get('streamlit_url')
+# streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
 # https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/
 # flask_url = os.environ.get('flask_url')
-streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
+
 
 print('streamlit_url :', streamlit_url)
 
-@app.route('/templates')
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+'''@app.route('/templates')
 def index():
     return render_template('index.html')
-    # render_template('index.html', streamlit_url=streamlit_url)
+    # render_template('index.html', streamlit_url=streamlit_url)'''
 
 
 if __name__ == '__main__':
