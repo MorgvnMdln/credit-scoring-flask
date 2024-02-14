@@ -25,12 +25,12 @@ print('streamlit_url :', streamlit_url)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return "Hello, World!"
 
-'''@app.route('/templates')
+@app.route('/')  # templates
 def index():
     return render_template('index.html')
-    # render_template('index.html', streamlit_url=streamlit_url)'''
+    # render_template('index.html', streamlit_url=streamlit_url)
 
 
 if __name__ == '__main__':
