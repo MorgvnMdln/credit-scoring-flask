@@ -20,7 +20,7 @@ app = Flask(__name__)
 # flask_url = os.environ.get('flask_url')
 streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
 
-
+print('streamlit_url :', streamlit_url)
 
 @app.route('/templates')
 def index():
