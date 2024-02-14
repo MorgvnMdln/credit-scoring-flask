@@ -11,36 +11,12 @@ import numpy as np
 from dotenv import load_dotenv
 
 
+app = Flask(__name__)
+
+# Envirionment variables& other variables
 load_dotenv()
-
-app = Flask(__name__)
-
-streamlit_url = os.environ.get('streamlit_url')
-# streamlit_url = "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
-# https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/
-# flask_url = os.environ.get('flask_url')
-
-
-print('streamlit_url :', streamlit_url)
-
-@app.route('/')
-def home():
-    return "Hello, World!"
-
-@app.route('/')  # templates
-def index():
-    return render_template('index.html')
-    # render_template('index.html', streamlit_url=streamlit_url)
-
-
-if __name__ == '__main__':
-        app.run(port=5000, debug=True)
-
-
-
-'''
-# pred_model = PredictionModel()
-app = Flask(__name__)
+streamlit_url = os.environ.get('streamlit_url')  # "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
+flask_url = os.environ.get('flask_url')  # https://credit-scoring-flask-109d0cbc468c.herokuapp.com/
 MODEL_PATH = 'model_global.pkl'
 LIME_PATH = 'lime_global.pkl'
 LOCAL_FEAT_IMPORTANCE_PATH = 'feature_importance_locale.txt'
@@ -69,8 +45,6 @@ else:
     print(f"File {json_url} does not exist or is empty.")
 
 
-
-
 def imageToString(image_path):
     b64_string = ''
     with open(image_path, "rb") as img_file:
@@ -78,10 +52,7 @@ def imageToString(image_path):
     return b64_string.decode('utf-8')
 
 
-
-
 @app.route("/api/predict", methods=["GET"])
-
 
 def predict():
     args = request.args
@@ -91,7 +62,6 @@ def predict():
     features = test_data.loc[test_data['SK_ID_CURR'] == int(client_Id)]  # donnees du client retournees
     features = features.loc[:, features.columns != 'SK_ID_CURR'].to_numpy()
     
-
     # preparation input
     print('Loaded features shape: ', features.shape)
 
@@ -106,7 +76,9 @@ def predict():
     local_feat_importance = explainer.explain_instance(test_data.iloc[client_index, 0:-1],
                                                     _model.predict_proba,
                                                     num_samples=100)  # passer X en format numpy array
-    
+    '''local_feat_importance = self.explainer.explain_instance(self.test_data.iloc[client_index],
+                                                    self._model.predict_proba,
+                                                    num_samples=100)  # passer X en format numpy array'''
     temp_ = local_feat_importance.as_list()
     print ('temp_ :\n', temp_)
 
@@ -145,6 +117,7 @@ def predict():
                     'other_data': other_client_info
                     })
 
+
 @app.route("/api/model_performance", methods=["GET"])
 
 def get_model_performance():
@@ -152,8 +125,6 @@ def get_model_performance():
                     'status': 'ok',
                     'features_importances' :  imageToString('images/Feature_Importance_Globale.png'),  # localhost:5000/images/Feature_Importance_Globale.png
                     })
-
-
 
 
 @app.route("/api/client_comparison", methods=["GET"])
@@ -174,14 +145,11 @@ def get_client_comparison():
                     })  
 
 
-# cache = Cache(app, config={'CACHE_TYPE': 'simple'})
+@app.route('/templates')
 
-# @app.route('/clear_cache')
-# def clear_cache():
-    # cache.clear()
-    # return 'Cache has been cleared'
+def index():
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
-#'''
