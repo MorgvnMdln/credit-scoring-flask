@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# Envirionment variables& other variables
+# Envirionment variables & other variables
 load_dotenv()
 streamlit_url = os.environ.get('streamlit_url')  # "https://credit-scoring-streamlit-194aaf4426c2.herokuapp.com/"
 flask_url = os.environ.get('flask_url')  # https://credit-scoring-flask-109d0cbc468c.herokuapp.com/
