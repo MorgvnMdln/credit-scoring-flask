@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, redirect, url_for, request, jsonify
+from flask_cors import CORS, cross_origin
 # from flask_caching import Cache
 from werkzeug.wrappers import Request, Response
 # from prediction_model import PredictionModel
@@ -12,6 +13,7 @@ from dotenv import load_dotenv
 
 
 app = Flask(__name__)
+CORS(app)  # Cross-Origin Resource Sharing, enable CORS for all routes /!\
 
 # Envirionment variables & other variables
 load_dotenv()
@@ -53,6 +55,8 @@ def imageToString(image_path):
 
 
 @app.route("/api/predict", methods=["GET"])
+# Access-Control-Allow-Origin accepting only requests from the specified origin
+# @cross_origin(origins=[streamlit_url, "http://localhost:3000"])
 
 def predict():
     args = request.args
