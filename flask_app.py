@@ -156,5 +156,10 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/check')
+def check():
+    return render_template('check.html')
+
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
