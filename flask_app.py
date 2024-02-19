@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 
 
 app = Flask(__name__)
-# CORS(app)  # Cross-Origin Resource Sharing, enable CORS for all routes /!\
+CORS(app)  # Cross-Origin Resource Sharing, enable CORS for all routes /!\
 
 # Envirionment variables & other variables
 load_dotenv()
@@ -56,7 +56,7 @@ def imageToString(image_path):
 
 @app.route("/api/predict", methods=["GET"])
 # Access-Control-Allow-Origin accepting only requests from the specified origin
-@cross_origin(origins=[streamlit_url, "http://localhost:3000"])
+# @cross_origin(origins=[streamlit_url, "http://localhost:3000"])
 
 def predict():
     args = request.args
@@ -121,7 +121,7 @@ def predict():
 
 
 @app.route("/api/model_performance", methods=["GET"])
-@cross_origin(origins=[streamlit_url, "http://localhost:3000"])
+# @cross_origin(origins=[streamlit_url, "http://localhost:3000"])
 
 def get_model_performance():
     return jsonify({
@@ -131,7 +131,7 @@ def get_model_performance():
 
 
 @app.route("/api/client_comparison", methods=["GET"])
-@cross_origin(origins=[streamlit_url, "http://localhost:3000"])
+# @cross_origin(origins=[streamlit_url, "http://localhost:3000"])
 
 def get_client_comparison():
     return jsonify({
@@ -150,7 +150,7 @@ def get_client_comparison():
 
 
 @app.route('/templates')
-@cross_origin(origins=[streamlit_url, "http://localhost:3000"])
+# @cross_origin(origins=[streamlit_url, "http://localhost:3000"])
 
 def index():
     return render_template('index.html')
